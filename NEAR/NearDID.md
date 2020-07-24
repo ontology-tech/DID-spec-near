@@ -52,12 +52,12 @@ Below is the basic structure of the NEAR DID Document:
 {
   "@context": ["https://www.w3.org/ns/did/v1"],
   "id": "did:near:alice.near",
-  "publicKey": [{...}],
-  "authentication": [{...}],
-  "controller": [{...}],
-  "service": [{...}],
-  "created": [{...}],
-  "updated": [{...}],
+  "publicKey": [...],
+  "authentication": [...],
+  "controller": [...],
+  "service": [...],
+  "created": "...",
+  "updated": "..."
 }
 ```
 
@@ -101,11 +101,11 @@ Each linked public key has its own identifier specified using the field `id`. Th
 
 Bound public keys can be revoked. Revoked public keys **MUST NOT** be reactivated, but can still possess the original `id`.
 
-The value of the `type` field represents the corresponding public key type. NEAR blockchain supports `Ed25519VerificationKey2018` and `EcdsaSecp256k1VerificationKey2019`.
+The value of the `type` field represents the corresponding public key type. NEAR DID Documents support `Ed25519VerificationKey2018` and `EcdsaSecp256k1VerificationKey2019`.
 
 The value of the `controller` field which identifies the controller of the corresponding private key **MUST** be a valid NEAR DID, implying that the public key is controlled by this NEAR DID.
 
-The encoding formats that NEAR blockchain supports include `publicKeyHex` and `publicKeybase58`. Public keys of all types **MUST** be expressed in these two formats.
+The encoding formats that NEAR DID Documents support include `publicKeyHex` and `publicKeybase58`. Public keys of all types **MUST** be expressed in these two formats.
 
 Below is a specific example of the `publicKey` property:
 
@@ -128,7 +128,7 @@ NEAR DID Documents **SHOULD** include an `authentication` property to specify a 
 
 A NEAR DID subject could add the `authentication` property in its corresponding NEAR DID Document to denote that the subject has authorized a set of verification methods for the purpose of authentication.
 
-Each verification method in the `authentication` property **MAY** be embedded or referenced.
+The associated value **MUST** be an ordered set of one or more verification methods. Each verification method in the `authentication` property **MAY** be embedded or referenced.
 
 Below is an example which refers to authentication keys in the two way specified above:
 
