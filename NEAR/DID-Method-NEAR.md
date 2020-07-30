@@ -1,19 +1,21 @@
+# NEAR DID Method Specification
+
 - Proposal Name: NEAR DID method specification
 - Start Date: 2020-07-23
 - NEP PR: [nearprotocol/neps#0000](https://github.com/nearprotocol/neps/pull/0000)
 
-# Summary
+## Summary
 [summary]: #summary
 
 Decentralized identifiers (DIDs) are a new type of identifiers that enables verifiable, self-sovereign digital identity. This NEAR DID method specification describes a new DID method, that is, NEAR DID and defines how NEAR blockchain stores NEAR DIDs and their corresponding NEAR DID documents, and how to do CRUD operations on NEAR DID documents.
 
 This specification conforms to the requirements specified in the [DIDs specification](https://www.w3.org/TR/did-core/) currently published by the W3C Credentials Community Group.
 
-# Motivation
+## Motivation
 [motivation]: #motivation
 NEAR uses readable account identifiers instead of a hash of a public key, and the accounts have some DID features, but not all. We have developed this specification to define a new DID method for hosting DIDs on the NEAR blockchain, also referred to as NEAR DID, and facilitate developers to work with related contracts.
 
-# NEAR DID Method Name
+## NEAR DID Method Name
 [near-did-method-name]: #near-did-method-name
 
 The namestring that shall identify this DID method is: `near`.
@@ -22,7 +24,7 @@ A DID that uses this method **MUST** begin with the following prefix: `did:near`
 
 The remainder of the DID, after the prefix, is its namespace-specific identifier specified below.
 
-## Namespace Specific Identifier (NSI)
+### Namespace Specific Identifier (NSI)
 [namespace-specific-identifier]: #namespace-specific-identifier
 
 The namespace specific identifier of NEAR DID is defined by the following ABNF:
@@ -33,7 +35,7 @@ idchar    = %x30-39 / %x61-7A / "-" / "_"
 ```
 The maximum length of `near-specific-idstring` is 64.
 
-## Example
+### Example
 [example]: #example
 
 A valid NEAR DID might be:
@@ -41,7 +43,7 @@ A valid NEAR DID might be:
 did:near:alice.near
 ```
 
-# CRUD Operations
+## CRUD Operations
 [crud-operations]: #crud-operations
 
 The following section outlines the DID operations for the `did:near` method.
@@ -50,7 +52,7 @@ NEAR DIDs reside on the NEAR blockchain, and are mananged via the NEAR DID manag
 
 For the sake of convenience, we refer to the NEAR DID management smart contract as 'the registry'.
 
-## Create (Register)
+### Create (Register)
 [create]: #create
 
 A Near account is needed to create a new NEAR DID,
@@ -67,7 +69,7 @@ The public key of the Near account's access key that was used to sign the transa
 
 This method will return true if the new NEAR DID is registered successfully.
 
-## Read (Resolve)
+### Read (Resolve)
 [read]: #read
 
 NEAR DID's associated DID document can be looked up by invoking the `getDocument` method of the registry.
@@ -82,7 +84,7 @@ get_document()
 
 Besides this full-fledged resolver, the NEAR blockchain provides other simple resolvers, such as fetching the `authentication` property.
 
-### NEAR DID Document Example
+#### NEAR DID Document Example
 [near-did-document-example]: #near-did-document-example
 
 ```json
@@ -105,7 +107,7 @@ Besides this full-fledged resolver, the NEAR blockchain provides other simple re
 }
 ```
 
-## Update (Replace)
+### Update (Replace)
 [update]: #update
 
 To update a NEAR DID document, the corresponding NEAR DID subject just need to invoke relevant functions.
@@ -130,7 +132,7 @@ The `delegate` parameter specifies the to-be-removed controller.
 
 We do not provide the full list of supported update methods here and will provide specific documentation which lists all of the related APIs.
 
-## Delete (Revoke)
+### Delete (Revoke)
 [delete]: #delete
 
 To delete (or deactivate) a NEAR DID, it suffices to remove all the verification methods from its associated DID document. In this case, there is no authentication method that can be used to authenticate the holder's identity.
@@ -145,7 +147,7 @@ The `did` parameter specifies the to-be-deactivated NEAR DID.
 
 More importantly, the deletion of a NEAR DID implies this DID cannot be registered or reactivated again.
 
-# Security and Privacy Considerations
+## Security and Privacy Considerations
 [security-and-privacy-considerations]: #security-and-privacy-considerations
 
 There are several securities and privacy considerations that implementers would want to take into consideration when implementing this specification.
@@ -156,12 +158,12 @@ Since the delegates specified in the `controller` property can change the value 
 
 NEAR DID documents should be limited to verification methods and service endpoints, and should not store any personal information.
 
-# Reference Implementations
+## Reference Implementations
 [reference-implementations]: #reference-implementations
 
 The reference implementation is available here: https://github.com/ontology-tech/DID-NEAR-rust.
 
-# References
+## References
 [references]: #references
 
 [1]. NEAR Protocol, https://www.near.org
