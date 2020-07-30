@@ -159,7 +159,7 @@ NEAR DID documents should be limited to verification methods and service endpoin
 # Reference Implementations
 [reference-implementations]: #reference-implementations
 
-A reference implementation of NEAR DID scheme is currently under development.
+The reference implementation is available here: https://github.com/ontology-tech/DID-NEAR-rust.
 
 # References
 [references]: #references
