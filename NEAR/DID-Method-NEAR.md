@@ -96,7 +96,7 @@ Besides this full-fledged resolver, the NEAR blockchain provides other simple re
   "publicKey": [
 	{
 	  "id": "did:near:alice.near#keys-1",
-	  "type": "EcdsaSecp256r1VerificationKey2019",
+	  "type": "EcdsaSecp256k1VerificationKey2019",
 	  "controller": "did:near:alice.near",
 	  "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
 	}
